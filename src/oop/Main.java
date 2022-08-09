@@ -45,7 +45,7 @@ public class Main {
         Lawyer[] lawyers = {lawyer1, lawyer2, lawyer3, lawyer4, lawyer5};
 
         Staff staff = new Staff(lawyers);
-        staff.printAllLawyers(lawyers);
+        staff.showAllLawyers(lawyers);
 
         LOGGER.info("Quantity of available lawyers: " + Lawyer.getQuantityLawyers());
 

@@ -16,7 +16,7 @@ public class Staff {
         this.lawyers = lawyers;
     }
 
-    public void printAllLawyers(Lawyer[] lawyers) {
+    public void showAllLawyers(Lawyer[] lawyers) {
         for (Lawyer lawyer : lawyers) {
             LOGGER.info(lawyer.getName() + " has rating " + lawyer.getRating() + "; ");
         }
