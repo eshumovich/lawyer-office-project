@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
-
 public class Main {
 
     static {
@@ -46,7 +45,7 @@ public class Main {
         Lawyer[] lawyers = {lawyer1, lawyer2, lawyer3, lawyer4, lawyer5};
 
         Staff staff = new Staff(lawyers);
-        staff.allLawyers(lawyers);
+        staff.printAllLawyers(lawyers);
 
         LOGGER.info("Quantity of available lawyers: " + Lawyer.getQuantityLawyers());
 
@@ -129,7 +128,7 @@ public class Main {
 
         redClearing.setDateOfFoundation(LocalDate.of(2020, 5, 1));
 
-        try(TextFile textFile = new TextFile()) {
+        try (TextFile textFile = new TextFile()) {
             LOGGER.info("This is a idempotent");
         }
     }

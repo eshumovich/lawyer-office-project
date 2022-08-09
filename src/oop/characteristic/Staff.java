@@ -16,8 +16,8 @@ public class Staff {
         this.lawyers = lawyers;
     }
 
-    public void allLawyers(Lawyer[] lawyers) {
-        for(Lawyer lawyer : lawyers) {
+    public void printAllLawyers(Lawyer[] lawyers) {
+        for (Lawyer lawyer : lawyers) {
             LOGGER.info(lawyer.getName() + " has rating " + lawyer.getRating() + "; ");
         }
         if (lawyers.length == 0) {
@@ -26,9 +26,9 @@ public class Staff {
     }
 
     public void allLawyersBirthdays(Lawyer[] lawyers) {
-            for (int i = 0; i < lawyers.length; i++) {
-                LOGGER.info(lawyers[i].getName() + " was born " + lawyers[i].getBirth());
-            }
+        for (int i = 0; i < lawyers.length; i++) {
+            LOGGER.info(lawyers[i].getName() + " was born " + lawyers[i].getBirth());
+        }
     }
 
     public Lawyer[] getLawyer() {

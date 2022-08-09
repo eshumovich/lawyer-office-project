@@ -4,7 +4,7 @@ import oop.Address;
 
 import java.util.Objects;
 
-public class Building  implements Openable {
+public class Building implements Openable {
 
     private Address address;
 

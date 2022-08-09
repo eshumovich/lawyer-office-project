@@ -30,7 +30,7 @@ public class Address {
         this.city = city;
     }
 
-    public Integer getHouseNumber(){
+    public Integer getHouseNumber() {
         return houseNumber;
     }
 

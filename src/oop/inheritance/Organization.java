@@ -1,6 +1,5 @@
 package oop.inheritance;
 
-import oop.characteristic.Staff;
 import oop.exception.InvalidDateException;
 import oop.exception.NameInvalidException;
 import org.apache.logging.log4j.LogManager;
@@ -41,7 +40,7 @@ public class Organization {
 
     public void setDateOfFoundation(LocalDate dateOfFoundation) {
         int years = LocalDate.now().getYear() - dateOfFoundation.getYear();
-        if(years < 0) {
+        if (years < 0) {
             throw new InvalidDateException("Date of company foundation is incorrect");
         }
         this.dateOfFoundation = dateOfFoundation;

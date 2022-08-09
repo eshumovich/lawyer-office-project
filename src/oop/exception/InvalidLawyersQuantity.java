@@ -1,6 +1,6 @@
 package oop.exception;
 
-public class InvalidLawyersQuantity extends RuntimeException{
+public class InvalidLawyersQuantity extends RuntimeException {
 
     public InvalidLawyersQuantity(String message) {
         super(message);

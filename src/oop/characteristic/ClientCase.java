@@ -29,7 +29,7 @@ public class ClientCase extends Work {
         LocalDate now = LocalDate.now();
         Period period = Period.between(prevDate, now);
 
-        LOGGER.info("Event waiting for: years: " + period.getYears() + " , months: " + period.getMonths() + ", days: " +  period.getDays());
+        LOGGER.info("Event waiting for: years: " + period.getYears() + " , months: " + period.getMonths() + ", days: " + period.getDays());
     }
 
     public String getDescription() {
