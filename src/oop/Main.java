@@ -131,6 +131,8 @@ public class Main {
         try (TextFile textFile = new TextFile()) {
             LOGGER.info("This is a idempotent");
         }
+
+        Client client3 = new Client("Bruce", divorce, BigDecimal.valueOf(500));
     }
 }
 
