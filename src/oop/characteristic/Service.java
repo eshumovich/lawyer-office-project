@@ -58,11 +58,11 @@ public class Service extends Work {
         this.descriptionOfService = descriptionOfService;
     }
 
-    public VisitTime getVisit() {
+    public VisitTime getVisitTime() {
         return visit;
     }
 
-    public void setVisit(VisitTime visit) {
+    public void setVisitTime(VisitTime visit) {
         this.visit = visit;
     }
 }
