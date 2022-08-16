@@ -2,8 +2,7 @@ package oop;
 
 import oop.characteristic.*;
 import oop.exception.NameInvalidException;
-import oop.inheritance.CompetitorLawyersOffice;
-import oop.inheritance.Human;
+import oop.inheritance.*;
 import oop.worktime.VisitTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +11,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -42,10 +45,16 @@ public class Main {
         Lawyer lawyer5 = new Lawyer("Valentin", address4, LocalDate.of(2001, 2, 1));
         lawyer5.setRating(4);
 
-        Lawyer[] lawyers = {lawyer1, lawyer2, lawyer3, lawyer4, lawyer5};
+        List<Lawyer> lawyers = new ArrayList<>();
+        lawyers.add(lawyer1);
+        lawyers.add(lawyer2);
+        lawyers.add(lawyer3);
+        LOGGER.info("Lawyers size: " + lawyers.size());
 
         Staff staff = new Staff(lawyers);
         staff.showAllLawyers(lawyers);
+
+        staff.allLawyersBirthdays(lawyers);
 
         LOGGER.info("Quantity of available lawyers: " + Lawyer.getQuantityLawyers());
 
@@ -63,7 +72,9 @@ public class Main {
         lawyer1.setSalary(BigDecimal.valueOf(150));
         lawyer1.isAvailable();
 
-        Client[] clients = {client1, client2};
+        List<Client> clients = new ArrayList<>();
+        clients.add(client1);
+        clients.add(client2);
 
         VisitTime visit = new VisitTime(30, 2);
         LOGGER.info("Required time for the case: " + visit.totalMinutes() + " min");
@@ -72,7 +83,10 @@ public class Main {
         Service service2 = new Service("ASAP", BigDecimal.valueOf(150), "bill the client for the case");
         Service service3 = new Service("ASAP", BigDecimal.valueOf(170), "Solve the case");
 
-        Service[] services = {service1, service2, service3};
+        List<Service> services = new ArrayList<>();
+        services.add(service1);
+        services.add(service2);
+        services.add(service3);
 
         LawyerOffice redClearing = new LawyerOffice("RedClearing",
                 LocalDate.of(2002, 2, 1), address, staff, clients, services);
@@ -133,6 +147,24 @@ public class Main {
         }
 
         Client client3 = new Client("Bruce", divorce, BigDecimal.valueOf(500));
+
+        Lawyer<RatingStar> lawyer = new Lawyer<RatingStar>("Joey", address1, LocalDate.of(1991, 6, 2));
+        lawyer.setRating(9);
+        lawyer.setStar(new RatingStar());
+
+        printStars(lawyer);
+
+        CourtHouse<AbonementFullDay> courtHouse1 = new CourtHouse<AbonementFullDay>(address1);
+        courtHouse1.setAccess(new AbonementFullDay());
+
+        Map<String, Client> schedule = new HashMap<>();
+        schedule.put(client1.getClientCase().getDescription(), client1);
+        schedule.put(client2.getClientCase().getDescription(), client2);
+        redClearing.showSchedule(schedule);
+    }
+
+    public static void printStars(Human<RatingStar> human) {
+        LOGGER.info(human.getStar().increaseRating());
     }
 }
 

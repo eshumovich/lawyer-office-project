@@ -4,19 +4,12 @@ import oop.Address;
 
 import java.util.Objects;
 
-public class Building implements Openable {
+public class Building<A> implements Openable {
 
     private Address address;
+    private A access;
 
     public Building(Address address) {
-        this.address = address;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -42,5 +35,21 @@ public class Building implements Openable {
     @Override
     public int hashCode() {
         return Objects.hash(address);
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public A getAccess() {
+        return access;
+    }
+
+    public void setAccess(A access) {
+        this.access = access;
     }
 }

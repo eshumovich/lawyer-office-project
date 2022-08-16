@@ -1,8 +1,7 @@
 package oop.characteristic;
 
 import oop.Address;
-import oop.inheritance.Available;
-import oop.inheritance.Human;
+import oop.inheritance.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Lawyer extends Human implements Available {
+public class Lawyer<T extends IIncreaseRating> extends Human<T> implements Available {
 
     private static final Logger LOGGER = LogManager.getLogger(Lawyer.class);
 
@@ -68,6 +67,7 @@ public class Lawyer extends Human implements Available {
     public static int getQuantityLawyers() {
         return quantityLawyers;
     }
+
 
     public static void setQuantityLawyers(int quantityLawyers) {
         Lawyer.quantityLawyers = quantityLawyers;

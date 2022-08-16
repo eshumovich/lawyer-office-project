@@ -2,13 +2,14 @@ package oop.characteristic;
 
 import oop.inheritance.Human;
 import oop.inheritance.Billable;
+import oop.inheritance.IIncreaseRating;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Client extends Human implements Billable {
+public class Client<T extends IIncreaseRating> extends Human<T> implements Billable {
 
     private static final Logger LOGGER = LogManager.getLogger(Client.class);
 
