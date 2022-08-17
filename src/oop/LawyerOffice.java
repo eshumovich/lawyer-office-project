@@ -4,6 +4,7 @@ import oop.characteristic.Client;
 import oop.characteristic.ClientCase;
 import oop.characteristic.Service;
 import oop.characteristic.Staff;
+import oop.inheritance.IIncreaseRating;
 import oop.inheritance.Organization;
 import oop.inheritance.Printable;
 import org.apache.logging.log4j.LogManager;
@@ -21,10 +22,10 @@ public class LawyerOffice extends Organization implements Printable {
     private Address address;
     private Staff staff;
     private List<Service> services;
-    private List<Client> clients;
-    private Map<String, Client> schedule;
+    private List<Client<? extends IIncreaseRating>> clients;
+    private Map<String, Client<? extends IIncreaseRating>> schedule;
 
-    public LawyerOffice(String name, LocalDate dateOfFoundation, Address address, Staff staff, List<Client> clients, List<Service> services) {
+    public LawyerOffice(String name, LocalDate dateOfFoundation, Address address, Staff staff, List<Client<? extends IIncreaseRating>> clients, List<Service> services) {
         super(name, dateOfFoundation);
         this.address = address;
         this.staff = staff;
@@ -52,7 +53,7 @@ public class LawyerOffice extends Organization implements Printable {
         }
     }
 
-    public int countClients(List<Client> clients) {
+    public int countClients(List<Client<? extends IIncreaseRating>> clients) {
         int counter = 0;
         for (Client client : clients) {
             LOGGER.info("Client: " + client.getName() + " " + client.getClientCase() );
@@ -67,8 +68,8 @@ public class LawyerOffice extends Organization implements Printable {
         }
     }
 
-    public void showSchedule(Map<String, Client> schedule) {
-        for (Map.Entry<String, Client> entry : schedule.entrySet()) {
+    public void showSchedule(Map<String, Client<? extends IIncreaseRating>> schedule) {
+        for (Map.Entry<String, Client<? extends IIncreaseRating>> entry : schedule.entrySet()) {
             LOGGER.info(entry.getKey() + "  :  " + entry.getValue());
         }
     }
@@ -129,19 +130,19 @@ public class LawyerOffice extends Organization implements Printable {
         this.services = services;
     }
 
-    public List<Client> getClients() {
+    public List<Client<? extends IIncreaseRating>> getClients() {
         return clients;
     }
 
-    public void setClients(List<Client> clients) {
+    public void setClients(List<Client<? extends IIncreaseRating>> clients) {
         this.clients = clients;
     }
 
-    public Map<String, Client> getSchedule() {
+    public Map<String, Client<? extends IIncreaseRating>> getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(Map<String, Client> schedule) {
+    public void setSchedule(Map<String, Client<? extends IIncreaseRating>> schedule) {
         this.schedule = schedule;
     }
 }

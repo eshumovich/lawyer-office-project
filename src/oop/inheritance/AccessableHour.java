@@ -1,4 +1,5 @@
 package oop.inheritance;
 
-public interface AccessableHour extends Accessable{
+public interface AccessableHour extends Accessable {
+
 }

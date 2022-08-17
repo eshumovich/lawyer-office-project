@@ -11,10 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
@@ -45,7 +42,7 @@ public class Main {
         Lawyer lawyer5 = new Lawyer("Valentin", address4, LocalDate.of(2001, 2, 1));
         lawyer5.setRating(4);
 
-        List<Lawyer> lawyers = new ArrayList<>();
+        List<Lawyer<? extends IIncreaseRating>> lawyers = new ArrayList<>();
         lawyers.add(lawyer1);
         lawyers.add(lawyer2);
         lawyers.add(lawyer3);
@@ -72,7 +69,7 @@ public class Main {
         lawyer1.setSalary(BigDecimal.valueOf(150));
         lawyer1.isAvailable();
 
-        List<Client> clients = new ArrayList<>();
+        List<Client<? extends IIncreaseRating>> clients = new ArrayList<>();
         clients.add(client1);
         clients.add(client2);
 
@@ -107,7 +104,7 @@ public class Main {
         LOGGER.info("----------------------------------");
 
         Address addressCourtHouse = new Address("Italy", "Rome", 100);
-        CourtHouse courtHouse = new CourtHouse(addressCourtHouse);
+        CourtHouse<? extends AbonementFullDay> courtHouse = new CourtHouse(addressCourtHouse);
         courtHouse.bookCourtHouse(LocalDateTime.of(2022, 12, 1, 7, 30));
         courtHouse.isOpen();
         courtHouse.startTrial();
@@ -124,8 +121,14 @@ public class Main {
         competitorLawyersOffice.stealInformation();
         redClearing.issueLicense();
 
-        Human[] humans = {client1, client2, lawyer1, lawyer2, lawyer3};
-        LawyerOfficeUtils.showEducation(humans);
+        Set<Human<?>> humans = new HashSet<>();
+        humans.add(client1);
+        humans.add(client2);
+        humans.add(lawyer3);
+        LOGGER.info(humans);
+        for(Human<?> human : humans) {
+            LOGGER.info("Finished the University");
+        }
 
         LOGGER.info("----------------------------------");
         LawyerOfficeUtils.print(redClearing, competitorLawyersOffice);
@@ -157,7 +160,7 @@ public class Main {
         CourtHouse<AbonementFullDay> courtHouse1 = new CourtHouse<AbonementFullDay>(address1);
         courtHouse1.setAccess(new AbonementFullDay());
 
-        Map<String, Client> schedule = new HashMap<>();
+        Map<String, Client<? extends IIncreaseRating>> schedule = new HashMap<>();
         schedule.put(client1.getClientCase().getDescription(), client1);
         schedule.put(client2.getClientCase().getDescription(), client2);
         redClearing.showSchedule(schedule);

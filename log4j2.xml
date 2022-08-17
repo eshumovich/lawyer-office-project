@@ -12,9 +12,6 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="oop.characteristic.Staff" level="debug">
-            <AppenderRef ref="Console"/>
-        </Logger>
         <Root level="info">
             <AppenderRef ref="Console"/>
             <Appender-ref ref="MyFile"/>

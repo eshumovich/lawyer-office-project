@@ -1,6 +1,7 @@
 package oop.characteristic;
 
 import oop.exception.InvalidLawyersQuantity;
+import oop.inheritance.IIncreaseRating;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,14 +12,14 @@ public class Staff {
 
     private static final Logger LOGGER = LogManager.getLogger(Staff.class);
 
-    private List<Lawyer> lawyers;
+    private List<Lawyer<? extends IIncreaseRating>> lawyers;
 
-    public Staff(List<Lawyer> lawyers) {
+    public Staff(List<Lawyer<? extends IIncreaseRating>> lawyers) {
         this.lawyers = lawyers;
     }
 
-    public void showAllLawyers(List<Lawyer> lawyers) {
-        for (Lawyer lawyer : lawyers) {
+    public void showAllLawyers(List<Lawyer<? extends IIncreaseRating>> lawyers) {
+        for (Lawyer<? extends IIncreaseRating> lawyer : lawyers) {
             LOGGER.info(lawyer.getName() + " has rating " + lawyer.getRating() + "; ");
         }
         if (lawyers.size() == 0) {
@@ -26,17 +27,17 @@ public class Staff {
         }
     }
 
-    public void allLawyersBirthdays(List<Lawyer> lawyers) {
+    public void allLawyersBirthdays(List<Lawyer<? extends IIncreaseRating>> lawyers) {
         for (int i = 0; i < lawyers.size(); i++) {
             LOGGER.info(lawyers.get(i).getName() + " was born " + lawyers.get(i).getBirth());
         }
     }
 
-    public List<Lawyer> getLawyers() {
+    public List<Lawyer<? extends IIncreaseRating>> getLawyers() {
         return lawyers;
     }
 
-    public void setLawyers(List<Lawyer> lawyers) {
+    public void setLawyers(List<Lawyer<? extends IIncreaseRating>> lawyers) {
         this.lawyers = lawyers;
     }
 
