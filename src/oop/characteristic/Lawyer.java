@@ -32,7 +32,7 @@ public class Lawyer<T extends IIncreaseRating> extends Human<T> implements Avail
         System.out.println(getName() + " entered the Harvard University");
     }
 
-    public void provideDefendence(Client client) {
+    public void provideDefendence(Client<? extends IIncreaseRating> client) {
         LOGGER.info(getName() + " provides defendence to a " + client.getName());
         client.payLawyer(getSalary());
     }
@@ -55,13 +55,13 @@ public class Lawyer<T extends IIncreaseRating> extends Human<T> implements Avail
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Lawyer lawyer = (Lawyer) o;
-        return rating == lawyer.rating && Objects.equals(address, lawyer.address) && Objects.equals(birth, lawyer.birth);
+        Lawyer<?> lawyer = (Lawyer<?>) o;
+        return rating == lawyer.rating && Objects.equals(address, lawyer.address) && Objects.equals(birth, lawyer.birth) && Objects.equals(salary, lawyer.salary);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(address, birth, rating);
+        return Objects.hash(address, birth, rating, salary);
     }
 
     public static int getQuantityLawyers() {

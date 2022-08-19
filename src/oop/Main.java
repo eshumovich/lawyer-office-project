@@ -31,15 +31,15 @@ public class Main {
         Address address4 = new Address("Belarus", "Vitebsk", 101);
         Address address5 = new Address("Belarus", "Minsk", 3);
 
-        Lawyer lawyer1 = new Lawyer("Rachel Green", address1, LocalDate.of(1990, 6, 2));
+        Lawyer<? extends IIncreaseRating> lawyer1 = new Lawyer("Rachel Green", address1, LocalDate.of(1990, 6, 2));
         lawyer1.setRating(9);
-        Lawyer lawyer2 = new Lawyer("Monica Geller", address2, LocalDate.of(1986, 12, 8));
+        Lawyer<? extends IIncreaseRating> lawyer2 = new Lawyer("Monica Geller", address2, LocalDate.of(1986, 12, 8));
         lawyer2.setRating(8);
-        Lawyer lawyer3 = new Lawyer("John", address3, LocalDate.of(1990, 11, 1));
+        Lawyer<? extends IIncreaseRating> lawyer3 = new Lawyer("John", address3, LocalDate.of(1990, 11, 1));
         lawyer3.setRating(7);
-        Lawyer lawyer4 = new Lawyer("Nikita", address4, LocalDate.of(2000, 3, 4));
+        Lawyer<? extends IIncreaseRating> lawyer4 = new Lawyer("Nikita", address4, LocalDate.of(2000, 3, 4));
         lawyer4.setRating(10);
-        Lawyer lawyer5 = new Lawyer("Valentin", address4, LocalDate.of(2001, 2, 1));
+        Lawyer<? extends IIncreaseRating> lawyer5 = new Lawyer("Valentin", address4, LocalDate.of(2001, 2, 1));
         lawyer5.setRating(4);
 
         List<Lawyer<? extends IIncreaseRating>> lawyers = new ArrayList<>();
@@ -62,8 +62,8 @@ public class Main {
         LocalDate prevDate2 = LocalDate.of(2019, 8, 10);
         aliments.caseWaiting(prevDate2);
 
-        Client client1 = new Client("Evgeny", divorce, BigDecimal.valueOf(1500));
-        Client client2 = new Client("Valera", aliments, BigDecimal.valueOf(1350));
+        Client<? extends IIncreaseRating> client1 = new Client("Evgeny", divorce, BigDecimal.valueOf(1500));
+        Client<? extends IIncreaseRating> client2 = new Client("Valera", aliments, BigDecimal.valueOf(1350));
 
         LOGGER.info("----------------------------------");
         lawyer1.setSalary(BigDecimal.valueOf(150));
@@ -91,12 +91,14 @@ public class Main {
         LOGGER.info("----------------------------------");
         redClearing.startCase();
         redClearing.startCase(true);
+        redClearing.setClients(clients);
 
-        LOGGER.info("Quantity of clients: " + redClearing.countClients(clients));
+        LOGGER.info("Quantity of clients: " + redClearing.countClients());
         LOGGER.info(redClearing.getAddress());
 
         LOGGER.info("----------------------------------");
-        redClearing.showServices(services);
+        redClearing.setServices(services);
+        redClearing.showServices();
 
         ZonedDateTime now = ZonedDateTime.now();
         LOGGER.info(now);
@@ -149,7 +151,7 @@ public class Main {
             LOGGER.info("This is a idempotent");
         }
 
-        Client client3 = new Client("Bruce", divorce, BigDecimal.valueOf(500));
+        Client<? extends IIncreaseRating> client3 = new Client("Bruce", divorce, BigDecimal.valueOf(500));
 
         Lawyer<RatingStar> lawyer = new Lawyer<RatingStar>("Joey", address1, LocalDate.of(1991, 6, 2));
         lawyer.setRating(9);
@@ -161,9 +163,10 @@ public class Main {
         courtHouse1.setAccess(new AbonementFullDay());
 
         Map<String, Client<? extends IIncreaseRating>> schedule = new HashMap<>();
+        redClearing.setSchedule(schedule);
         schedule.put(client1.getClientCase().getDescription(), client1);
         schedule.put(client2.getClientCase().getDescription(), client2);
-        redClearing.showSchedule(schedule);
+        redClearing.showSchedule();
     }
 
     public static void printStars(Human<RatingStar> human) {

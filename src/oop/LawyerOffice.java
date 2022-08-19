@@ -53,23 +53,23 @@ public class LawyerOffice extends Organization implements Printable {
         }
     }
 
-    public int countClients(List<Client<? extends IIncreaseRating>> clients) {
+    public int countClients() {
         int counter = 0;
-        for (Client client : clients) {
+        for (Client<? extends IIncreaseRating> client : clients) {
             LOGGER.info("Client: " + client.getName() + " " + client.getClientCase() );
             counter++;
         }
         return counter;
     }
 
-    public void showServices(List<Service> services) {
+    public void showServices() {
         for(Service service : services) {
             LOGGER.info("Show service: " + service.getDescriptionOfService());
         }
     }
 
-    public void showSchedule(Map<String, Client<? extends IIncreaseRating>> schedule) {
-        for (Map.Entry<String, Client<? extends IIncreaseRating>> entry : schedule.entrySet()) {
+    public void showSchedule() {
+        for (Map.Entry<String, Client<? extends IIncreaseRating>> entry : this.schedule.entrySet()) {
             LOGGER.info(entry.getKey() + "  :  " + entry.getValue());
         }
     }

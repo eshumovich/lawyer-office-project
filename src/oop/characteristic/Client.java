@@ -65,8 +65,8 @@ public class Client<T extends IIncreaseRating> extends Human<T> implements Billa
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
-        return money == client.money && Objects.equals(clientCase, client.clientCase);
+        Client<?> client = (Client<?>) o;
+        return Objects.equals(clientCase, client.clientCase) && Objects.equals(money, client.money);
     }
 
     @Override
