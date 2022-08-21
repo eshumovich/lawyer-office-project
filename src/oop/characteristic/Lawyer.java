@@ -1,8 +1,7 @@
 package oop.characteristic;
 
 import oop.Address;
-import oop.inheritance.Available;
-import oop.inheritance.Human;
+import oop.inheritance.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Lawyer extends Human implements Available {
+public class Lawyer<T extends IIncreaseRating> extends Human<T> implements Available {
 
     private static final Logger LOGGER = LogManager.getLogger(Lawyer.class);
 
@@ -33,7 +32,7 @@ public class Lawyer extends Human implements Available {
         System.out.println(getName() + " entered the Harvard University");
     }
 
-    public void provideDefendence(Client client) {
+    public void provideDefendence(Client<? extends IIncreaseRating> client) {
         LOGGER.info(getName() + " provides defendence to a " + client.getName());
         client.payLawyer(getSalary());
     }
@@ -56,18 +55,19 @@ public class Lawyer extends Human implements Available {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Lawyer lawyer = (Lawyer) o;
-        return rating == lawyer.rating && Objects.equals(address, lawyer.address) && Objects.equals(birth, lawyer.birth);
+        Lawyer<?> lawyer = (Lawyer<?>) o;
+        return rating == lawyer.rating && Objects.equals(address, lawyer.address) && Objects.equals(birth, lawyer.birth) && Objects.equals(salary, lawyer.salary);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(address, birth, rating);
+        return Objects.hash(address, birth, rating, salary);
     }
 
     public static int getQuantityLawyers() {
         return quantityLawyers;
     }
+
 
     public static void setQuantityLawyers(int quantityLawyers) {
         Lawyer.quantityLawyers = quantityLawyers;
